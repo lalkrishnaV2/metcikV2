@@ -15,13 +15,16 @@ const LeftTaskBar = ({ onTaskSelect, isOpen }) => {
   ];
 
   const [showTasks, setShowTasks] = useState(false);
+
   console.log("onTasked", onTaskSelect);
+
   return (
-    <div className="md:block sm:hidden md:border ">
-      <div
-        className="bg-gray-200 cursor-pointer"
-        onClick={() => setShowTasks(!showTasks)}
-      >
+    <div
+      className={`md:block sm:hidden md:border ${showTasks ? "hovered" : ""}`}
+      onMouseEnter={() => setShowTasks(true)}
+      onMouseLeave={() => setShowTasks(false)}
+    >
+      <div className="bg-gray-200 cursor-pointer">
         <div className="bg-gray-200 cursor-pointer">
           <div className="w-full md:w-full  custom-font">
             {showTasks ? "Task Bar <-" : "->"}
@@ -38,9 +41,7 @@ const LeftTaskBar = ({ onTaskSelect, isOpen }) => {
           <li
             key={index}
             className="py-3 cursor-pointer"
-            onClick={() => {
-              onTaskSelect(task);
-            }}
+            onClick={() => onTaskSelect(task)}
           >
             <div className="flex items-center">
               <span className="mr-2 font-semibold">{index + 1}.</span>

@@ -6,7 +6,7 @@ import React from "react";
 const Page = () => {
   const user = {
     imageUrl: "path/to/user-image.jpg",
-    name: "John Doe",
+    name: "Mahin shams",
     phone: "123-456-7890",
     email: "john@example.com",
     gender: "Male",

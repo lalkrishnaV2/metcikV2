@@ -4,17 +4,25 @@ import MarketCard from "@/components/crypto/MarketCard";
 import BasicProfileTag from "@/components/dashboard/BasicProfile";
 import DataAdviseCardCurosel from "@/components/dashboard/DataAdviseCardCurosel";
 import JobCards from "@/components/dashboard/JobCards";
-import BottomToTopCarousel from "@/components/shared/DashboardCardCurosel";
-import React, { useState } from "react";
+import BottomToTopCarousel from "@/components/BasicUi/DashboardCardCurosel";
+import React, { useEffect, useState } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import InterestSelect from "@/components/dashboard/InterestSelect";
-import WelcomeProjectDetails from "@/components/dashboard/WelcomeProjectDetails";
+import WelcomeProjectDetails from "@/components/dashboard/WelcomeMetickDetails";
+import { useDispatch, useSelector } from "react-redux";
+import { UserDetails } from "@/provider/redux/slices/user/userDetailsSlice";
 
 interface SelectOption {
   value: string;
   label: string;
 }
+
 const Dashboard = () => {
+  const userName = useSelector(
+    (state) => state.profile?.successMessage?.user?.user_name
+  );
+  console.log("userName", userName);
+
   return (
     <>
       <div className="max-w-7xl lg:mx-auto p-1 md:px-10 xl:px-0 my-8 flex-col gap-8 md:gap-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
@@ -24,25 +32,25 @@ const Dashboard = () => {
             <div className="text-center flex flex-col items-start">
               {/* here the data */}
               <p className="md:h2-bold mt-4 md:mt-4 text-gray-800 custom-font md:ml-6 sm:text-2xl text-2xl pl-6 md:pl-0 md:text-xl font-semibold">
-                Welcome, Mahin shams
+                Welcome, {userName}
               </p>
 
-              <p className="md:mt-2 pl-8  md:pl-9 mt-3 italic text-green-800">
+              <p className="md:mt-2 pl-8  md:pl-9 mt-3 italic text-green-800 right-24">
                 Get started to achieve your lookin' ⚡
               </p>
 
-              <div className="pl-8 mt-4 md:mt-8">
+              {/* <div className="pl-8 mt-4 md:mt-8">
                 <label className="flex items-center">
                   <input type="checkbox" className="h-4 w-4 mr-2" />
                   <span className="text-m custom-font">
                     Are you a complete beginner?
                   </span>
                 </label>
-              </div>
+              </div> */}
 
               {/* Use react-select for the dropdown */}
               <div className="sm:col-span-2 md:col-span-1 mt-4 ">
-                <InterestSelect />
+                {/* <InterestSelect /> */}
                 <WelcomeProjectDetails />
               </div>
             </div>

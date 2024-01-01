@@ -13,8 +13,10 @@ import {
   MdNotifications,
   MdPublic,
 } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
+  const router = useRouter();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -35,6 +37,11 @@ const Header = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    // router.push("/sign-in");
+  };
 
   return (
     <header className="w-full  text-black">
@@ -81,7 +88,15 @@ const Header = () => {
                   <p className="cursor-pointer">Your Profile</p>
                 </Link>
                 <p className="cursor-pointer">Hiring Dashboard</p>
-                <p className="cursor-pointer">Logout</p>
+                <p
+                  className="cursor-pointer"
+                  onClick={() => {
+                    handleLogout();
+                    router.push("/sign-in");
+                  }}
+                >
+                  Logout
+                </p>
               </div>
             )}
           </div>

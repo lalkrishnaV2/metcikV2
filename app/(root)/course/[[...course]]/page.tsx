@@ -32,9 +32,9 @@ const Page = () => {
             <MainContentBodyCourse selectedTask={selectedTask} />
           </div>
         </div>
-        <div className="bg-gray-200 w-1/12 hidden md:block">
+        {/* <div className="bg-gray-200 w-1/12 hidden md:block">
           <RightHintBox />
-        </div>
+        </div> */}
       </div>
     </section>
   );
